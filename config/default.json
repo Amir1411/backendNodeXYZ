@@ -1,0 +1,10 @@
+{
+	"databaseSettings": {
+		"db_host":"localhost",
+		"db_user":"root",
+		"db_password":"lapar",
+		"database":"lapar",
+		"mysqlPORT":"3306"
+	},
+	"base_url": "http://13.126.140.186:3001"
+}

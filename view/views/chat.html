@@ -1,0 +1,500 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+
+<div id="add-friend-popup" tabindex="-1" role="dialog" class="modal in">
+	<div class="background-overlay" ng-click="closePopup()"></div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+				<button type="button" class="close" data-dismiss="modal" ng-click="closePopup()">
+					<span aria-hidden="true">×</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title">Add Friend</h4>
+			</div>
+			<div class="modal-body">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-12 col-md-12">
+							<ul>
+								<div ng-show="friendlist">
+									<li class="clearfix" ng-repeat="(key,list) in userListData">
+										<div class="left">
+											<img ng-src="{{list.user_thumbnail}}" class="img-left img-circle" width="50px" height="50px" alt="User Image" />
+											<h4 class="img-text">{{list.user_name}}</h4>
+										</div>
+										<div class="right">
+											<button ng-class="list.is_friend == 1? 'btn btn-success btn-list' : 'btn btn-danger btn-list'" ng-click="addFriendRequest(list.user_id, key)">Add Friend</button>
+										</div>
+									</li>
+								</div>
+								<div ng-show="noFriendSuggestion">
+									<li><h1 class="text-center">{{noFriendSuggestionData}}</h1></li>
+								</div>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="modal-footer">
+				<button class="btn btn-primary" data-dismiss="modal" type="button">Continue</button>
+				<button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+			</div> -->
+		</div>
+	</div>
+</div>
+
+<div class="full-container clearfix">
+	<div class="sidebar-wrap">
+		<div class="sidebar">
+			<div class="sidebar-menu">
+				<ul>
+					<li><a href=""><i class="fa fa-bars" aria-hidden="true"></i></a></li>
+					<li><a href=""><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+					<li><a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+					<li><a href=""><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+					<li><a href=""></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="inbox-wrap">
+		<div class="inbox">
+			<div class="inbox-heading clearfix">
+				<div class="left">
+					<h1>Inbox</h1>
+				</div>
+				<div class="right">
+					<button><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+				</div>
+			</div>
+			<div class="inbox-list-wrap inbox-list-wrap-1">
+				<div class="inbox-list-1">
+					<ul>
+						<li>
+							<a href="">
+								<div class="clearfix">
+									<div class="left">
+										<h3>All Messages</h3>
+									</div>
+									<div class="right">
+										<p>21</p>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="clearfix">
+									<div class="left">
+										<h3>All Messages</h3>
+									</div>
+									<div class="right">
+										<p>21</p>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="clearfix">
+									<div class="left">
+										<h3>All Messages</h3>
+									</div>
+									<div class="right">
+										<p>21</p>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>	
+			</div>
+			<div class="inbox-list-wrap inbox-list-wrap-2">
+				<div class="inbox-list-2">
+					<ul>
+						<li>
+							<a href="">
+								<div class="clearfix">
+									<div class="left">
+										<h3>All Messages</h3>
+									</div>
+									<div class="right">
+										<p>21</p>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="clearfix">
+									<div class="left">
+										<h3>All Messages</h3>
+									</div>
+									<div class="right">
+										<p>21</p>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="clearfix">
+									<div class="left">
+										<h3>All Messages</h3>
+									</div>
+									<div class="right">
+										<p>21</p>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>	
+			</div>
+			<div class="inbox-list-wrap inbox-list-wrap-3">
+				<div class="inbox-list-3">
+					<ul>
+						<li>
+							<a href="" ng-click="addFriend()" class="logout">
+								<h3>Add Friend</h3>
+							</a>
+						</li>
+						<li>
+							<a href="" ng-click="logout()" class="logout">
+								<h3>Logout</h3>
+							</a>
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<div class="people-list-wrap">
+		<div class="span3 people-list">
+			<div class="people-list-heading clearfix">
+				<div id="search">
+					<label for="search-input">
+						<i class="fa fa-search" aria-hidden="true"></i>
+						<span class="sr-only">Search icons</span>
+					</label>
+					<input type="text" name="search_user" placeholder="Search" class="search-field">
+				</div>
+			</div>
+			<div class="people-list-menu-wrap">
+				<div class="people-list-menu">
+					<ul>
+						<div ng-show="friendChatlist">
+							<li class="clearfix" ng-repeat="(key, list) in friendListData">
+								<div class="active-bar"></div>
+								<a href="#">
+									<div class="profile-short-description-wrap clearfix">
+										<img ng-src="{{list.user_thumbnail}}">
+										<div class="profile-short-description">
+											<h3>{{list.user_name}}</h3>
+											<p>Thanks again you have been working good</p>
+										</div>
+										<div class="profile-short-description-menu">
+											<h3>...</h3>
+											<p>5 min</p>
+										</div>
+									</div>
+								</a>
+							</li>
+						</div>
+						<div ng-show="noFriendChatSuggestion">
+							<li><h1 class="text-center">{{noFriendChatSuggestionData}}</h1></li>
+						</div>
+					</ul>
+				</div>	
+			</div>
+		</div>
+		<div class="span9 chat-wrap">
+			<div class="chat-navbar-wrap">
+				<div class="chat-navbar clearfix">
+					<div class="left">
+						<h3>Tom is typing...</h3>
+					</div>
+					<div class="right">
+						<div class="clearfix">
+							<div class="span6">
+								<a href="">
+									<i class="fa fa-phone" aria-hidden="true"></i>
+								</a>
+							</div>
+							<div class="span6">
+								<a href="">
+									<i class="fa fa-video-camera" aria-hidden="true"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="chat-body-wrap">
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-out">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zindagi ek safar hai suhana kal kya hoga kisne jana maut aati hai aa hi jaayegi</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-out">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-out">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-out">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-out">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zaati ho tum jaldi hai kya tumse bhala Zaati ho tum jaldi hai kya tumse bhala Zaati ho tum jaldi hai kya tumse bhala Zaati ho tum jaldi hai kya tumse bhala Zaati ho tum jaldi hai kya tumse bhala </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-out">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zindagi ek safar hai suhana kal kya hoga kisne jana maut aati hai aa hi jaayegi</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zindagi ek safar hai suhana kal kya hoga kisne jana maut aati hai aa hi jaayegi</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zindagi ek safar hai suhana kal kya hoga kisne jana maut aati hai aa hi jaayegi</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zindagi ek safar hai suhana kal kya hoga kisne jana maut aati hai aa hi jaayegi</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zindagi ek safar hai suhana kal kya hoga kisne jana maut aati hai aa hi jaayegi</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zindagi ek safar hai suhana kal kya hoga kisne jana maut aati hai aa hi jaayegi</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Aap aisa sochti ho mai nhi jaanta tha</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="msg-wrap clearfix">
+					<div class="chat-msg-in">
+						<span class="tail-container"></span>
+						<div class="bubble bubble-text">
+							<div class="message-text">
+								<span class="message-pre-text">12:03 AM, 9/17/2017</span>
+								<span class="emojitext selectable-text" dir="ltr">Zindagi ek safar hai suhana kal kya hoga kisne jana maut aati hai aa hi jaayegi</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="chat-footer-wrap clearfix">
+				<div class="span1">
+					<a href="">
+						<i class="fa fa-paperclip" aria-hidden="true"></i>
+					</a>
+				</div>
+				<div class="span9">
+					<textarea placeholder="Enter Message"></textarea>
+				</div>
+				<div class="span1">
+					<a href="">
+						<i class="fa fa-smile-o" aria-hidden="true"></i>	
+					</a>						
+				</div>
+				<div class="span1">
+					<a href="" class="send-message_btn">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

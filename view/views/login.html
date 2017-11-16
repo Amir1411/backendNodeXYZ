@@ -1,0 +1,118 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/form-elements.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+<!-- Top content -->
+		<div class="top-content-wrap"></div>
+		<div class="top-content">    	
+			<div class="inner-bg">
+				<div class="container">    	
+					<div class="row">
+						<div class="col-sm-8 col-sm-offset-2 text">
+							<h1><strong>Lapar</strong> A Chat application</h1>
+							<div class="description">
+								<p>
+									Welcome<strong> Guys</strong>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="form-box">
+								<div class="form-top">
+									<div class="form-top-left">
+										<h3>Login to our site</h3>
+										<p>Enter username and password to log on:</p>
+									</div>
+									<div class="form-top-right">
+										<i class="fa fa-lock"></i>
+									</div>
+								</div>
+								<div class="form-bottom">
+									<form class="login-form" ng-submit="loginForm()">
+										<div class="form-group">
+											<label class="sr-only" for="form-login-email">Email</label>
+											<input type="text" name="form-login-email" placeholder="Email..." class="form-control" ng-model="login_email">
+											<span class="error" ng-show="login_email_error">*{{login_email_msg}}</span>
+										</div>
+										<div class="form-group">
+											<label class="sr-only" for="form-login-password">Password</label>
+											<input type="password" name="form-login-password" placeholder="Password..." class="form-control" ng-model="login_password">
+											<span class="error" ng-show="login_password_error">*{{login_password_msg}}</span>
+										</div>
+										<button type="submit" class="btn">Sign in!</button>
+									</form>
+								</div>
+							</div>
+							<div class="social-login">
+								<h3>...or login with:</h3>
+								<div class="social-login-buttons">
+									<a class="btn btn-link-2" href="#">
+										<i class="fa fa-facebook"></i> Facebook
+									</a>
+									<a class="btn btn-link-2" href="#">
+										<i class="fa fa-twitter"></i> Twitter
+									</a>
+									<a class="btn btn-link-2" href="#">
+										<i class="fa fa-google-plus"></i> Google Plus
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-1 middle-border"></div>
+						<div class="col-sm-1"></div>
+						<div class="col-sm-5">
+							<div class="form-box">
+								<div class="form-top">
+									<div class="form-top-left">
+										<h3>Sign up now</h3>
+										<p>Fill in the form below to get instant access:</p>
+									</div>
+									<div class="form-top-right">
+										<i class="fa fa-pencil"></i>
+									</div>
+								</div>
+								<div class="form-bottom">
+									<form role="form" class="registration-form" ng-submit="signupForm()">
+										<div class="form-group">
+											<label class="sr-only" for="form-user-name">User Name</label>
+											<input type="text" name="form-user-name" placeholder="Username..." class="form-control" ng-model="signup_name">
+											<span class="error" ng-show="signup_name_error">*{{signup_name_error_msg}}</span>
+										</div>
+										<div class="form-group">
+											<label class="sr-only" for="form-email">Email</label>
+											<input type="text" name="form-email" placeholder="Email..." class="form-control" ng-model="signup_email">
+											<span class="error" ng-show="signup_email_error">*{{signup_email_error_msg}}</span>
+										</div>
+										<div class="form-group">
+											<label class="sr-only" for="form-password">Password</label>
+											<input type="password" name="form-password" placeholder="Enter password..." class="form-control" ng-model="signup_password">
+											<span class="error" ng-show="signup_password_error">*{{signup_password_error_msg}}</span>
+										</div>
+										<div class="form-group">
+											<label class="sr-only" for="form-confirm-password">Confirm Password</label>
+											<input type="password" name="form-confirm-password" placeholder="Enter confirm password..." class="form-control" ng-model="signup_confirm_password">
+											<span class="error" ng-show="signup_confirm_password_error">*{{signup_confirm_password_error_msg}}</span>
+										</div>
+										<button type="submit" class="btn signup_btn">Sign me up!</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="row">	
+					<div class="col-sm-8 col-sm-offset-2">
+						<div class="footer-border"></div>
+						<p>Made by Mohd Amir at <a href="#" target="_blank"><strong>LAPAR</strong></a> 
+							having a lot of fun. <i class="fa fa-smile-o"></i></p>
+					</div>
+				</div>
+			</div>
+		</footer>

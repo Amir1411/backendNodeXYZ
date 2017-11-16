@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat Lapar</title>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+	<script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="services/httpService.js"></script>
+    <script src="controllers/index.js"></script>
+    <script src="controllers/chat.js"></script>
+    <script src="controllers/login.js"></script>
+</head>
+<body ng-app="lapar" ng-controller="index">
+    <div ng-view ></div>    
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>

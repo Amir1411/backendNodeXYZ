@@ -1,0 +1,22 @@
+{
+  "name": "chatlapar",
+  "version": "1.0.0",
+  "description": "This is my first chat application",
+  "main": "app.js",
+  "scripts": {
+    "test": "node --max-old-space-size=4096 app.js"
+  },
+  "author": "Mohd Amir",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.18.1",
+    "config": "^1.26.2",
+    "express": "^4.15.4",
+    "md5": "^2.2.1",
+    "mysql": "^2.14.1",
+    "socket.io": "^2.0.3"
+  },
+  "dependencies": {
+    "socket.io": "^2.0.3"
+  }
+}
